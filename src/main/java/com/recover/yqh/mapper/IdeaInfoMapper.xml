@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.recover.yqh.dao.IdeaInfoMapper">
+  <resultMap id="BaseResultMap" type="com.recover.yqh.entity.IdeaInfo">
+    <id column="idea_id" jdbcType="INTEGER" property="ideaId" />
+    <result column="plan_id" jdbcType="INTEGER" property="planId" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="idea_name" jdbcType="VARCHAR" property="ideaName" />
+    <result column="ad_slot_ids" jdbcType="VARCHAR" property="adSlotIds" />
+    <result column="asset_id" jdbcType="INTEGER" property="assetId" />
+    <result column="landing_page" jdbcType="VARCHAR" property="landingPage" />
+    <result column="impression_url" jdbcType="VARCHAR" property="impressionUrl" />
+    <result column="click_url" jdbcType="VARCHAR" property="clickUrl" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="admin_status" jdbcType="INTEGER" property="adminStatus" />
+    <result column="idea_type" jdbcType="INTEGER" property="ideaType" />
+    <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_modify_time" jdbcType="TIMESTAMP" property="lastModifyTime" />
+    <result column="asset_type" jdbcType="TINYINT" property="assetType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    idea_id, plan_id, unit_id, user_id, idea_name, ad_slot_ids, asset_id, landing_page, 
+    impression_url, click_url, status, admin_status, idea_type, is_delete, create_time, 
+    last_modify_time, asset_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from idea_info
+    where idea_id = #{ideaId,jdbcType=INTEGER}
+  </select>
+  <select id="selecltIdeaInfosTop10" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from idea_info
+    limit 10
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from idea_info
+    where idea_id = #{ideaId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.recover.yqh.entity.IdeaInfo">
+    insert into idea_info (idea_id, plan_id, unit_id, 
+      user_id, idea_name, ad_slot_ids, 
+      asset_id, landing_page, impression_url, 
+      click_url, status, admin_status, 
+      idea_type, is_delete, create_time, 
+      last_modify_time, asset_type)
+    values (#{ideaId,jdbcType=INTEGER}, #{planId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{ideaName,jdbcType=VARCHAR}, #{adSlotIds,jdbcType=VARCHAR}, 
+      #{assetId,jdbcType=INTEGER}, #{landingPage,jdbcType=VARCHAR}, #{impressionUrl,jdbcType=VARCHAR}, 
+      #{clickUrl,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{adminStatus,jdbcType=INTEGER}, 
+      #{ideaType,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastModifyTime,jdbcType=TIMESTAMP}, #{assetType,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.recover.yqh.entity.IdeaInfo">
+    insert into idea_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ideaId != null">
+        idea_id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="ideaName != null">
+        idea_name,
+      </if>
+      <if test="adSlotIds != null">
+        ad_slot_ids,
+      </if>
+      <if test="assetId != null">
+        asset_id,
+      </if>
+      <if test="landingPage != null">
+        landing_page,
+      </if>
+      <if test="impressionUrl != null">
+        impression_url,
+      </if>
+      <if test="clickUrl != null">
+        click_url,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="adminStatus != null">
+        admin_status,
+      </if>
+      <if test="ideaType != null">
+        idea_type,
+      </if>
+      <if test="isDelete != null">
+        is_delete,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time,
+      </if>
+      <if test="assetType != null">
+        asset_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ideaId != null">
+        #{ideaId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="ideaName != null">
+        #{ideaName,jdbcType=VARCHAR},
+      </if>
+      <if test="adSlotIds != null">
+        #{adSlotIds,jdbcType=VARCHAR},
+      </if>
+      <if test="assetId != null">
+        #{assetId,jdbcType=INTEGER},
+      </if>
+      <if test="landingPage != null">
+        #{landingPage,jdbcType=VARCHAR},
+      </if>
+      <if test="impressionUrl != null">
+        #{impressionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="clickUrl != null">
+        #{clickUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="adminStatus != null">
+        #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ideaType != null">
+        #{ideaType,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyTime != null">
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assetType != null">
+        #{assetType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.recover.yqh.entity.IdeaInfo">
+    update idea_info
+    <set>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="ideaName != null">
+        idea_name = #{ideaName,jdbcType=VARCHAR},
+      </if>
+      <if test="adSlotIds != null">
+        ad_slot_ids = #{adSlotIds,jdbcType=VARCHAR},
+      </if>
+      <if test="assetId != null">
+        asset_id = #{assetId,jdbcType=INTEGER},
+      </if>
+      <if test="landingPage != null">
+        landing_page = #{landingPage,jdbcType=VARCHAR},
+      </if>
+      <if test="impressionUrl != null">
+        impression_url = #{impressionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="clickUrl != null">
+        click_url = #{clickUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="adminStatus != null">
+        admin_status = #{adminStatus,jdbcType=INTEGER},
+      </if>
+      <if test="ideaType != null">
+        idea_type = #{ideaType,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null">
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyTime != null">
+        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="assetType != null">
+        asset_type = #{assetType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where idea_id = #{ideaId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.recover.yqh.entity.IdeaInfo">
+    update idea_info
+    set plan_id = #{planId,jdbcType=INTEGER},
+      unit_id = #{unitId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      idea_name = #{ideaName,jdbcType=VARCHAR},
+      ad_slot_ids = #{adSlotIds,jdbcType=VARCHAR},
+      asset_id = #{assetId,jdbcType=INTEGER},
+      landing_page = #{landingPage,jdbcType=VARCHAR},
+      impression_url = #{impressionUrl,jdbcType=VARCHAR},
+      click_url = #{clickUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      admin_status = #{adminStatus,jdbcType=INTEGER},
+      idea_type = #{ideaType,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
+      asset_type = #{assetType,jdbcType=TINYINT}
+    where idea_id = #{ideaId,jdbcType=INTEGER}
+  </update>
+</mapper>
